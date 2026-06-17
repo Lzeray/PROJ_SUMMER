@@ -14,12 +14,15 @@ class Logger:
         # Создаем новый файл с заголовком
         with open(log_file, "w", encoding="utf-8") as f:
             f.write("="*60 + "\n")
-            f.write(f"🧪 ЛОГИ СИСТЕМЫ\n")
+            f.write(f"🗁ЛОГИ СИСТЕМЫ\n")
             f.write(f"Запуск: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
             f.write("="*60 + "\n\n")
                    
     @classmethod 
     def write_log(cls, agent_name: str, action: str, dop_info: str = '') -> Dict:
+        dop_info = str(dop_info)
+        if len(dop_info) > 100:
+            dop_info = dop_info[:100] + '...'
         log = {
             'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'agent_name': agent_name,
